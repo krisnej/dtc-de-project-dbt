@@ -42,8 +42,8 @@ models:
           description: district key
           tests:
             - relationships:
-                to: ref('stg_districts_data_cleaned')
-                field: district _key
+                  to: ref('stg_districts_data_cleaned')
+                  field: district_key
     - name: stg_bike_data_cleaned
       description: >-
         source "https://daten.berlin.de/anwendungen/fahrraddiebstahl-berlin", Data
