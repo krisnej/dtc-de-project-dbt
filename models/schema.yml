@@ -1,0 +1,67 @@
+version: 2
+
+sources:
+    - name: staging
+      database: dtc-de-course-339013
+      schema: project
+      tables:
+        - name: berlin_bike_data
+        - name: berlin_districts_data
+        - name: berlin_lor_data
+
+
+models:
+    - name: stg_bike_data_cleaned
+      description: >-
+        source "https://daten.berlin.de/anwendungen/fahrraddiebstahl-berlin", Data
+        on bicycle theft crimes at the level of geographic planning areas
+      columns:
+        - name: created_at
+          description: date the data was created by the police
+        - name: time_of_crime_start_day
+          description: date (%d.%m.%Y) of the crime
+        - name: time_of_crime_start_hour
+          description: hour of time of crime
+        - name: time_of_crime_end_day
+          description: date (%d.%m.%Y) of the crime
+        - name: time_of_crime_end_hour
+          description: hour of time of crime
+        - name: LOR
+          description: >-
+            Identifier for LOR Lebensweltlich orientierte Räume, a geographic
+            basis for planning, forecasting and monitoring demographic and social
+            developments in Berlin
+        - name: amount_of_damage
+          description: 'amount of damage in Euro, given by aggrieved party'
+        - name: attempt
+          description: >-
+            boolean of whether the crime was only an attempt (yes) or if it was
+            successfull (no)
+        - name: type_of_bike
+          description: 'type of bike, possible values'
+        - name: offence
+          description: type of offence as given by police
+        - name: reason_of_data_capture
+          description: reason of data capture as given by police
+    - name: stg_lor_data_cleaned
+      description: >-
+        source
+        "https://tsb-opendata.s3.eu-central-1.amazonaws.com/lor_prognoseraeume_2021/lor_prognoseraeume_2021.csv",
+        LOR, a geographic basis for planning, forecasting and monitoring
+        demographic and social developments in Berlin
+      columns:
+        - name: lor_key
+          description: LOR identifier given the area by the Berlin senate
+        - name: lor_name
+          description: LOR name given the area by the Berlin senate
+    - name: stg_districts_data_cleaned
+      description: >-
+        source
+        "https://tsb-opendata.s3.eu-central-1.amazonaws.com/lor_prognoseraeume_2021/lor_prognoseraeume_2021.csv",
+        LOR, a geographic basis for planning, forecasting and monitoring
+        demographic and social developments in Berlin
+      columns:
+        - name: district_name
+          description: name of district
+        - name: district_key
+          description: identifier of district given by the Berlin senate
