@@ -23,7 +23,7 @@ models:
           description: identifier of district given by the Berlin senate
           tests:
             - unique
-            - not-null
+            - not_null
     - name: stg_lor_data_cleaned
       description: >-
         source
@@ -34,7 +34,7 @@ models:
         - name: lor_key
           description: LOR identifier given the area by the Berlin senate
           tests:
-            - not-null
+            - not_null
             - unique
         - name: lor_name
           description: LOR name given the area by the Berlin senate
