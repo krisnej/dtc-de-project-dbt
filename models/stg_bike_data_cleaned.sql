@@ -15,4 +15,4 @@ select
     type_of_bike,
     offence,
     reason_of_data_capture
-from {{ ref('berlin_bike_data') }} d
+from {{ source('raw_data', 'berlin_bike_data') }} d
