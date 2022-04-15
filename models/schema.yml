@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-    - name: staging
+    - name: raw_data
       database: dtc-de-course-339013
       schema: project
       tables:
@@ -9,8 +9,41 @@ sources:
         - name: berlin_districts_data
         - name: berlin_lor_data
 
-
 models:
+    - name: stg_districts_data_cleaned
+      description: >-
+        source
+        "https://tsb-opendata.s3.eu-central-1.amazonaws.com/lor_prognoseraeume_2021/lor_prognoseraeume_2021.csv",
+        LOR, a geographic basis for planning, forecasting and monitoring
+        demographic and social developments in Berlin
+      columns:
+        - name: district_name
+          description: name of district
+        - name: district_key
+          description: identifier of district given by the Berlin senate
+          tests:
+            - unique
+            - not-null
+    - name: stg_lor_data_cleaned
+      description: >-
+        source
+        "https://tsb-opendata.s3.eu-central-1.amazonaws.com/lor_prognoseraeume_2021/lor_prognoseraeume_2021.csv",
+        LOR, a geographic basis for planning, forecasting and monitoring
+        demographic and social developments in Berlin
+      columns:
+        - name: lor_key
+          description: LOR identifier given the area by the Berlin senate
+          tests:
+            - not-null
+            - unique
+        - name: lor_name
+          description: LOR name given the area by the Berlin senate
+        - name: district_key
+          description: district key
+          tests:
+            - relationships:
+                to: ref('stg_districts_data_cleaned')
+                field: district _key
     - name: stg_bike_data_cleaned
       description: >-
         source "https://daten.berlin.de/anwendungen/fahrraddiebstahl-berlin", Data
@@ -31,6 +64,10 @@ models:
             Identifier for LOR Lebensweltlich orientierte Räume, a geographic
             basis for planning, forecasting and monitoring demographic and social
             developments in Berlin
+          tests:
+            - relationships:
+                to: ref('stg_lor_data_cleaned')
+                field: lor_key
         - name: amount_of_damage
           description: 'amount of damage in Euro, given by aggrieved party'
         - name: attempt
@@ -43,25 +80,4 @@ models:
           description: type of offence as given by police
         - name: reason_of_data_capture
           description: reason of data capture as given by police
-    - name: stg_lor_data_cleaned
-      description: >-
-        source
-        "https://tsb-opendata.s3.eu-central-1.amazonaws.com/lor_prognoseraeume_2021/lor_prognoseraeume_2021.csv",
-        LOR, a geographic basis for planning, forecasting and monitoring
-        demographic and social developments in Berlin
-      columns:
-        - name: lor_key
-          description: LOR identifier given the area by the Berlin senate
-        - name: lor_name
-          description: LOR name given the area by the Berlin senate
-    - name: stg_districts_data_cleaned
-      description: >-
-        source
-        "https://tsb-opendata.s3.eu-central-1.amazonaws.com/lor_prognoseraeume_2021/lor_prognoseraeume_2021.csv",
-        LOR, a geographic basis for planning, forecasting and monitoring
-        demographic and social developments in Berlin
-      columns:
-        - name: district_name
-          description: name of district
-        - name: district_key
-          description: identifier of district given by the Berlin senate
+    
