@@ -10,9 +10,9 @@ models:
         - name: district_name
         - name: amount_of_damage
     - name: thefts_per_hour
-      description: Number of thefts per hour divided by total thefts that day, grouped by district
+      description: Number of thefts per hour per day and district
       columns:
         - name: date_start
         - name: hour
         - name: district_name
-        - name: share_of_day
+        - name: thefts
