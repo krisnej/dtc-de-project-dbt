@@ -1,0 +1,15 @@
+version: 2
+
+models:
+    - name: thefts_per_district
+      description: >-
+        LOR, a geographic basis for planning, forecasting and monitoring
+        demographic and social developments in Berlin
+      columns:
+        - name: date_start
+          description: name of district
+        - name: hour
+          description: identifier of district given by the Berlin senate
+        - name: lor_name
+        - name: district_name
+        - name: amount_of_damage
