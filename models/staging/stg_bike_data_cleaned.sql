@@ -1,4 +1,12 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized='table',
+    partition_by={
+      "field": "time_of_crime_start_day",
+      "data_type": "timestamp",
+      "granularity": "day"
+    },
+    cluster_by = "LOR",
+)}}
 
 select
     parse_date("%d.%m.%Y", created_at) as create_at,
