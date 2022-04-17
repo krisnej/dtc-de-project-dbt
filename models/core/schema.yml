@@ -9,6 +9,7 @@ models:
         - name: lor_name
         - name: district_name
         - name: amount_of_damage
+        - name: type_of_bike
     - name: thefts_per_hour
       description: Number of thefts per hour per day and district
       columns:

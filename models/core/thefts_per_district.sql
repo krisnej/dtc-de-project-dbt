@@ -5,7 +5,8 @@ SELECT
     time_of_crime_start_hour as hour,
     lor_name,
     district_name,
-    amount_of_damage
+    amount_of_damage,
+    type_of_bike
 FROM {{ ref('stg_bike_data_cleaned') }} b
 join {{ ref('stg_lor_data_cleaned') }} l
     on b.LOR=l.lor_key
