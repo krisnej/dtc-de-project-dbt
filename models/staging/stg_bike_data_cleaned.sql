@@ -2,7 +2,7 @@
     materialized='table',
     partition_by={
       "field": "time_of_crime_start_day",
-      "data_type": "timestamp",
+      "data_type": "date",
       "granularity": "day"
     },
     cluster_by = "LOR",
