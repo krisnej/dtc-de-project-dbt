@@ -13,7 +13,7 @@ models:
     - name: stg_districts_data_cleaned
       description: >-
         source
-        "https://tsb-opendata.s3.eu-central-1.amazonaws.com/lor_prognoseraeume_2021/lor_prognoseraeume_2021.csv",
+        "https://daten.odis-berlin.de/de/dataset/bezirksgrenzen/",
         LOR, a geographic basis for planning, forecasting and monitoring
         demographic and social developments in Berlin
       columns:
@@ -27,7 +27,7 @@ models:
     - name: stg_lor_data_cleaned
       description: >-
         source
-        "https://tsb-opendata.s3.eu-central-1.amazonaws.com/lor_prognoseraeume_2021/lor_prognoseraeume_2021.csv",
+        "https://daten.odis-berlin.de/de/dataset/lor_prognoseraeume_2021/",
         LOR, a geographic basis for planning, forecasting and monitoring
         demographic and social developments in Berlin
       columns:
